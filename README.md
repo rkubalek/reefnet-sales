@@ -1,70 +1,164 @@
-# Getting Started with Create React App
+# Reefnet Salmon Sales Landing Page
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A professional React-based landing page for capturing sales leads for reefnet salmon. Perfect for restaurants, retailers, and distributors looking to source premium, sustainable salmon.
 
-## Available Scripts
+## 🎯 Features
 
-In the project directory, you can run:
+- **Professional Design**: Modern, responsive landing page with beautiful UI
+- **Lead Capture Form**: Comprehensive contact form to capture potential customer information
+- **Mobile Responsive**: Works perfectly on all devices
+- **Fast Performance**: Optimized React app with minimal bundle size
+- **Easy Customization**: Simple to modify content, colors, and branding
 
-### `npm start`
+## 🚀 Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Prerequisites
+- Node.js (version 14 or higher)
+- npm or yarn
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Installation
 
-### `npm test`
+1. Navigate to the project directory:
+```bash
+cd reefnet-sales
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Install dependencies:
+```bash
+npm install
+```
 
-### `npm run build`
+3. Start the development server:
+```bash
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The app will open at [http://localhost:3000](http://localhost:3000) (or the next available port).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📝 Customization
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Updating Content
+- **Company Information**: Edit contact details in `src/App.js`
+- **Product Details**: Modify the features section to match your specific offerings
+- **Form Fields**: Add or remove form fields as needed for your business
 
-### `npm run eject`
+### Styling
+- **Colors**: Update the color scheme in `src/App.css`
+- **Layout**: Modify the CSS classes to adjust spacing and layout
+- **Typography**: Change fonts and text styling
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Lead Capture Integration
+Currently, the form logs data to the console. To integrate with your backend:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Email Service**: Connect to services like SendGrid, Mailgun, or AWS SES
+2. **CRM Integration**: Send leads to Salesforce, HubSpot, or other CRM systems
+3. **Database**: Store leads in your own database
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Example integration in `handleSubmit` function:
+```javascript
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  try {
+    const response = await fetch('/api/leads', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
+    
+    if (response.ok) {
+      setIsSubmitted(true);
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error);
+  }
+};
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🚀 Deployment
 
-## Learn More
+### Option 1: Netlify (Recommended)
+1. Push your code to GitHub
+2. Connect your repository to Netlify
+3. Deploy automatically on every push
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Option 2: Vercel
+1. Install Vercel CLI: `npm i -g vercel`
+2. Run: `vercel` in the project directory
+3. Follow the prompts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Option 3: AWS S3 + CloudFront
+1. Build the app: `npm run build`
+2. Upload the `build` folder to S3
+3. Configure CloudFront for CDN
 
-### Code Splitting
+### Option 4: Traditional Web Hosting
+1. Build the app: `npm run build`
+2. Upload the `build` folder to your web server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📊 Analytics & SEO
 
-### Analyzing the Bundle Size
+### Google Analytics
+Add your Google Analytics tracking code to `public/index.html`:
+```html
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script>
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### SEO Optimization
+- Meta tags are already configured
+- Consider adding structured data for local business
+- Optimize images and add alt text
+- Ensure fast loading times
 
-### Making a Progressive Web App
+## 🔧 Available Scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `npm start` - Runs the app in development mode
+- `npm test` - Launches the test runner
+- `npm run build` - Builds the app for production
+- `npm run eject` - Ejects from Create React App (not recommended)
 
-### Advanced Configuration
+## 📱 Mobile Optimization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The app is fully responsive and optimized for:
+- Mobile phones
+- Tablets
+- Desktop computers
+- All modern browsers
 
-### Deployment
+## 🎨 Design System
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Colors
+- Primary Blue: `#1e40af`
+- Secondary Blue: `#3b82f6`
+- Accent Orange: `#f59e0b`
+- Text Dark: `#1e293b`
+- Text Light: `#6b7280`
 
-### `npm run build` fails to minify
+### Typography
+- System fonts for optimal performance
+- Responsive font sizes
+- Clear hierarchy with proper contrast
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📞 Support
+
+For questions about customizing or deploying this app, consider:
+- React documentation
+- Create React App documentation
+- Your hosting provider's documentation
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+**Built with ❤️ for sustainable seafood businesses**
