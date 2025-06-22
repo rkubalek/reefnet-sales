@@ -21,3 +21,15 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Large video files that might cause build issues
+public/images/videos/
+public/images/*.HEIC
+public/images/*.JPEG
+public/images/*.M4V
+public/images/*.MP4
+public/images/iCloud*.zip
+
+# Keep only optimized images
+!public/images/optimized/
+!public/images/roe.jpg
