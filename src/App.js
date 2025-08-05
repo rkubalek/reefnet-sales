@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import AdminLogin from './components/AdminLogin';
+import AdminDashboard from './components/AdminDashboard';
+import SalmonClubOrder from './components/SalmonClubOrder';
 
 function App() {
   const [formData, setFormData] = useState({
@@ -13,6 +16,30 @@ function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [showAdminLogin, setShowAdminLogin] = useState(false);
+  const [currentPage, setCurrentPage] = useState('home');
+
+  // Check admin login status on component mount
+  useEffect(() => {
+    const adminLoggedIn = localStorage.getItem('adminLoggedIn');
+    const loginTime = localStorage.getItem('adminLoginTime');
+    
+    if (adminLoggedIn && loginTime) {
+      // Check if login is still valid (24 hours)
+      const loginTimestamp = parseInt(loginTime);
+      const currentTime = Date.now();
+      const hoursSinceLogin = (currentTime - loginTimestamp) / (1000 * 60 * 60);
+      
+      if (hoursSinceLogin < 24) {
+        setIsAdminLoggedIn(true);
+      } else {
+        // Clear expired login
+        localStorage.removeItem('adminLoggedIn');
+        localStorage.removeItem('adminLoginTime');
+      }
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -88,6 +115,16 @@ Submitted: ${new Date().toLocaleString()}
     }
   };
 
+  const handleAdminLogin = (success) => {
+    setIsAdminLoggedIn(success);
+    setShowAdminLogin(false);
+  };
+
+  const handleAdminLogout = () => {
+    setIsAdminLoggedIn(false);
+    setShowAdminLogin(false);
+  };
+
   const galleryImages = [
     {
       src: '/images/optimized/IMG_3890_opt.jpg',
@@ -159,25 +196,49 @@ Submitted: ${new Date().toLocaleString()}
           <div className="nav-logo">
             <h2>Reefnet Salmon</h2>
           </div>
+          <div className="nav-menu">
+            <button 
+              onClick={() => setCurrentPage('home')}
+              className={`nav-button ${currentPage === 'home' ? 'active' : ''}`}
+            >
+              Home
+            </button>
+            <button 
+              onClick={() => setCurrentPage('order')}
+              className={`nav-button ${currentPage === 'order' ? 'active' : ''}`}
+            >
+              🐟 Order Salmon
+            </button>
+          </div>
           <div className="nav-contact">
             <span>📞 (555) 123-4567</span>
+            <button 
+              onClick={() => setShowAdminLogin(true)}
+              className="admin-button"
+              title="Admin Access"
+            >
+              🔐 Admin
+            </button>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-background">
-          <img src="/images/optimized/IMG_3890_opt.jpg" alt="Reefnet fishing operation" />
-        </div>
-        <div className="hero-content">
-          <h1>Premium Reefnet Salmon</h1>
-          <p>Fresh, sustainable, and responsibly harvested salmon from the pristine waters of the Pacific Northwest</p>
-          <button className="cta-button" onClick={() => document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' })}>
-            Get Pricing & Availability
-          </button>
-        </div>
-      </section>
+      {/* Main Content */}
+      {currentPage === 'home' && (
+        <>
+          {/* Hero Section */}
+          <section className="hero">
+            <div className="hero-background">
+              <img src="/images/optimized/IMG_3890_opt.jpg" alt="Reefnet fishing operation" />
+            </div>
+            <div className="hero-content">
+              <h1>Premium Reefnet Salmon</h1>
+              <p>Fresh, sustainable, and responsibly harvested salmon from the pristine waters of the Pacific Northwest</p>
+              <button className="cta-button" onClick={() => setCurrentPage('order')}>
+                🐟 Order Salmon Now
+              </button>
+            </div>
+          </section>
 
       {/* Features Section */}
       <section className="features">
@@ -488,30 +549,37 @@ Submitted: ${new Date().toLocaleString()}
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-content">
-            <div className="footer-section">
-              <h3>Reefnet Salmon</h3>
-              <p>Premium salmon for discerning customers</p>
+          {/* Footer */}
+          <footer className="footer">
+            <div className="container">
+              <div className="footer-content">
+                <div className="footer-section">
+                  <h3>Reefnet Salmon</h3>
+                  <p>Premium salmon for discerning customers</p>
+                </div>
+                <div className="footer-section">
+                  <h4>Contact</h4>
+                  <p>📞 (555) 123-4567</p>
+                  <p>📧 info@reefnetsalmon.com</p>
+                </div>
+                <div className="footer-section">
+                  <h4>Location</h4>
+                  <p>Pacific Northwest</p>
+                  <p>Serving nationwide</p>
+                </div>
+              </div>
+              <div className="footer-bottom">
+                <p>&copy; 2024 Reefnet Salmon. All rights reserved.</p>
+              </div>
             </div>
-            <div className="footer-section">
-              <h4>Contact</h4>
-              <p>📞 (555) 123-4567</p>
-              <p>📧 info@reefnetsalmon.com</p>
-            </div>
-            <div className="footer-section">
-              <h4>Location</h4>
-              <p>Pacific Northwest</p>
-              <p>Serving nationwide</p>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>&copy; 2024 Reefnet Salmon. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+          </footer>
+        </>
+      )}
+
+      {/* Order Page */}
+      {currentPage === 'order' && (
+        <SalmonClubOrder />
+      )}
 
       {/* Image Modal */}
       {selectedImage && (
@@ -520,6 +588,20 @@ Submitted: ${new Date().toLocaleString()}
             <img src={selectedImage.src} alt={selectedImage.alt} />
             <button className="modal-close">&times;</button>
           </div>
+        </div>
+      )}
+
+      {/* Admin Login Modal */}
+      {showAdminLogin && !isAdminLoggedIn && (
+        <div className="admin-modal">
+          <AdminLogin onLogin={handleAdminLogin} />
+        </div>
+      )}
+
+      {/* Admin Dashboard */}
+      {isAdminLoggedIn && (
+        <div className="admin-overlay">
+          <AdminDashboard onLogout={handleAdminLogout} />
         </div>
       )}
     </div>

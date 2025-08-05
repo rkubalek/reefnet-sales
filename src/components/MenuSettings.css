@@ -1,0 +1,349 @@
+.menu-settings {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.menu-settings h2 {
+  color: #2d3748;
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.menu-settings > p {
+  color: #4a5568;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.add-item-section {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-item-section h3 {
+  color: #2d3748;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.add-item-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  color: #2d3748;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.add-item-button {
+  background: #38a169;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  align-self: flex-start;
+}
+
+.add-item-button:hover {
+  background: #2f855a;
+}
+
+.menu-items-section {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu-items-section h3 {
+  color: #2d3748;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.empty-menu {
+  text-align: center;
+  padding: 40px;
+  color: #718096;
+}
+
+.empty-menu p {
+  font-size: 1.1rem;
+}
+
+.menu-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.menu-item-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  transition: box-shadow 0.3s ease;
+}
+
+.menu-item-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.edit-item-form {
+  padding: 20px;
+  background: #f7fafc;
+}
+
+.edit-item-form .form-row {
+  margin-bottom: 15px;
+}
+
+.edit-item-form .form-group {
+  margin-bottom: 15px;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.save-button {
+  background: #38a169;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.save-button:hover {
+  background: #2f855a;
+}
+
+.cancel-button {
+  background: #718096;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cancel-button:hover {
+  background: #4a5568;
+}
+
+.item-display {
+  padding: 20px;
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.item-info h4 {
+  margin: 0 0 8px 0;
+  color: #2d3748;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.price {
+  color: #38a169;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-right: 15px;
+}
+
+.status {
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.status.available {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.status.unavailable {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+.item-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-button,
+.toggle-button,
+.delete-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.edit-button:hover {
+  background: #e2e8f0;
+}
+
+.toggle-button:hover {
+  background: #e2e8f0;
+}
+
+.delete-button:hover {
+  background: #fed7d7;
+}
+
+.item-details {
+  margin-top: 15px;
+}
+
+.item-details .description {
+  color: #4a5568;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.item-specs {
+  display: flex;
+  gap: 15px;
+  font-size: 0.9rem;
+}
+
+.category {
+  color: #667eea;
+  font-weight: 500;
+  background: #edf2f7;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.min-order {
+  color: #718096;
+  background: #f7fafc;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .menu-settings {
+    padding: 15px;
+  }
+  
+  .add-item-section,
+  .menu-items-section {
+    padding: 20px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .item-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .item-actions {
+    justify-content: flex-start;
+  }
+  
+  .item-specs {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .edit-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-settings {
+    padding: 10px;
+  }
+  
+  .add-item-section,
+  .menu-items-section {
+    padding: 15px;
+  }
+} 
